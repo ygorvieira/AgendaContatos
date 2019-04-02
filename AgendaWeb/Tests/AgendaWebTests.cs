@@ -59,6 +59,24 @@ namespace AgendaWeb.Tests
         }
 
         [TestMethod]
+        public void DeleteDeveFalharSeIdDiferente()
+        {
+            var context = new AgendaContext();
+            var contato = context.Contacts.Add(new Contact
+            {
+                Id = 1,
+                Nome = "Teste 01",
+                DataNascimento = new DateTime(2010, 01, 01),
+                Sexo = "Masculino",
+                Idade = 9
+            });
+            var controller = new ContactsController();
+
+            var resultado = controller.DeleteContact(Int32.MaxValue);
+            Assert.IsInstanceOfType(resultado, typeof(NotFoundResult));
+        }
+
+        [TestMethod]
         public void PutDeveFalharQuandoIdDiferente()
         {
             var context = new AgendaContext();

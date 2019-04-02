@@ -108,7 +108,7 @@ namespace AgendaWeb.Controllers
         {
             return (from c in context.Contacts
                     where c.Id == id
-                    select c).First();
+                    select c).FirstOrDefault();
         }
     }
 }
